@@ -5,7 +5,11 @@ FILESEXTRAPATHS:append := ":${THISDIR}/${PN}"
 SCMVERSION="n"
 
 # Switch nvmap to built-in to fix the kernel headers
-SRC_URI:append = " file://0001-fix-kernel-headers-test.patch "
+SRC_URI:append = " \
+            file://0001-fix-kernel-headers-test.patch \
+            file://uefi_jetson_kiwi.bin \
+            file://tegra234-p3701-0000-p3737-0000-kiwi.dtb \
+"
 
 BALENA_CONFIGS:remove = " mdraid"
 
@@ -86,6 +90,11 @@ LABEL primary
       APPEND \${cbootargs} ${kernelRootspec} sdhci_tegra.en_boot_part_access=1 rootwait
 EOF
 
+}
+
+do_deploy:append() {
+    cp ${WORKDIR}/uefi_jetson_kiwi.bin "${DEPLOYDIR}"
+    cp ${WORKDIR}/tegra234-p3701-0000-p3737-0000-kiwi.dtb "${DEPLOYDIR}"
 }
 
 do_deploy[nostamp] = "1"
