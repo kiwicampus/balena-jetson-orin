@@ -1,6 +1,442 @@
 Change log
 -----------
 
+# v2.108.7
+## (2022-12-28)
+
+
+<details>
+<summary> Update layers/meta-balena to 68ec8ca1388c8e442acf1235dc573aeb12ff385a [renovate[bot]] </summary>
+
+> ## meta-balena-2.108.7
+> ### (2022-12-28)
+> 
+> * tests: os: fix modem test teardown [rcooke-warwick]
+> 
+
+</details>
+
+# v2.108.6
+## (2022-12-28)
+
+
+<details>
+<summary> Update layers/meta-balena to 3a45aa111217e64ef6ab8cbd16d34a12ece49a3c [renovate[bot]] </summary>
+
+> ## meta-balena-2.108.6
+> ### (2022-12-27)
+> 
+> * flasher: output logs to serial console [Joseph Kogut]
+> 
+> ## meta-balena-2.108.5
+> ### (2022-12-21)
+> 
+> * Engine healthcheck: deal with empty uuid file [Leandro Motta Barros]
+> 
+> ## meta-balena-2.108.4
+> ### (2022-12-20)
+> 
+> * distro: For OS development, enable serial console [Alex Gonzalez]
+> 
+> ## meta-balena-2.108.3
+> ### (2022-12-20)
+> 
+> 
+> <details>
+> <summary> Update tests/leviathan digest to f06d285 [renovate[bot]] </summary>
+> 
+>> ### leviathan-2.11.6
+>> #### (2022-12-16)
+>> 
+>> * Fix renovate extends syntax to include balena-io config [Kyle Harding]
+>> 
+>> ### leviathan-2.11.5
+>> #### (2022-12-16)
+>> 
+>> * renovate: Inherit settings from balena-io/renovate-config [Kyle Harding]
+>> 
+>> ### leviathan-2.11.4
+>> #### (2022-12-16)
+>> 
+>> * add logging and timeout to balena push [rcooke-warwick]
+>> 
+> 
+> </details>
+> 
+> 
+> ## meta-balena-2.108.2
+> ### (2022-12-19)
+> 
+> * Update balena-os/balena-supervisor to v14.4.9 [renovate[bot]]
+> 
+> ## meta-balena-2.108.1
+> ### (2022-12-18)
+> 
+> * common: signing: improve debug output on failure [Joseph Kogut]
+> 
+> ## meta-balena-2.108.0
+> ### (2022-12-16)
+> 
+> * Update NetworkManager to 1.40.4 [Zahari Petkov]
+> 
+> ## meta-balena-2.107.40
+> ### (2022-12-16)
+> 
+> * Add upstream resolvconf 1.91 recipe for kirkstone [Zahari Petkov]
+> 
+> ## meta-balena-2.107.39
+> ### (2022-12-16)
+> 
+> 
+> <details>
+> <summary> Update tests/leviathan digest to f44bbbd [renovate[bot]] </summary>
+> 
+>> ### leviathan-2.11.3
+>> #### (2022-12-16)
+>> 
+>> * Disable renovate config for now [Kyle Harding]
+>> * Restore worker release env var [Kyle Harding]
+>> 
+>> ### leviathan-2.11.2
+>> #### (2022-12-15)
+>> 
+>> * Update Node.js to v12.22.12 [Renovate Bot]
+>> 
+>> ### leviathan-2.11.1
+>> #### (2022-12-15)
+>> 
+>> * Remove dependabot as renovate is enabled in balena-io/renovate-config [Kyle Harding]
+>> * Pin worker to a release and add renovate regex template [Kyle Harding]
+>> 
+>> ### leviathan-2.11.0
+>> #### (2022-12-15)
+>> 
+>> * Update core/contracts digest to 08f029b [Renovate Bot]
+>> 
+>> ### leviathan-2.10.12
+>> #### (2022-12-15)
+>> 
+>> * Revert "Avoid conflicting docker subnets" [Vipul Gupta]
+>> 
+> 
+> </details>
+> 
+> 
+> ## meta-balena-2.107.38
+> ### (2022-12-16)
+> 
+> * Update balena-os/balena-supervisor to v14.4.8 [renovate[bot]]
+> 
+> ## meta-balena-2.107.37
+> ### (2022-12-15)
+> 
+> * tests: cloud: simplify apps to speedup suite [rcooke-warwick]
+> 
+> ## meta-balena-2.107.36
+> ### (2022-12-15)
+> 
+> 
+> <details>
+> <summary> Update tests/leviathan digest to 48ffd13 [renovate[bot]] </summary>
+> 
+>> ### leviathan-2.10.11
+>> #### (2022-12-14)
+>> 
+>> * Avoid conflicting docker networks [Kyle Harding]
+>> 
+> 
+> </details>
+> 
+> 
+> ## meta-balena-2.107.35
+> ### (2022-12-15)
+> 
+> * patch: Add default debug object to test config [Vipul Gupta (@vipulgupta2048)]
+> 
+> ## meta-balena-2.107.34
+> ### (2022-12-14)
+> 
+> * initrdscripts: Wait for udev processing to complete when unlocking LUKS devices [Michal Toman]
+> 
+> ## meta-balena-2.107.33
+> ### (2022-12-14)
+> 
+> * tests: hup: clean up inactive partition pre hup [rcooke-warwick]
+> 
+> ## meta-balena-2.107.32
+> ### (2022-12-14)
+> 
+> * tests/cloud: Increase the wait time for services to start [Kyle Harding]
+> 
+> ## meta-balena-2.107.31
+> ### (2022-12-14)
+> 
+> 
+> <details>
+> <summary> Update tests/leviathan digest to 27b78a4 [renovate[bot]] </summary>
+> 
+>> ### leviathan-2.10.10
+>> #### (2022-12-13)
+>> 
+>> * Enable external contributions via flowzone [Kyle Harding]
+>> 
+> 
+> </details>
+> 
+> 
+> ## meta-balena-2.107.30
+> ### (2022-12-13)
+> 
+> * extra-udev-rules: Update teensy.rules [Alex Gonzalez]
+> * extra-udev-rules: Rename recipe [Alex Gonzalez]
+> 
+> ## meta-balena-2.107.29
+> ### (2022-12-13)
+> 
+> * balena-image-initramfs: disable redundant compression [Joseph Kogut]
+> 
+> ## meta-balena-2.107.28
+> ### (2022-12-12)
+> 
+> * initrdscripts: Only unlock LUKS partitions on the OS drive [Michal Toman]
+> 
+> ## meta-balena-2.107.27
+> ### (2022-12-12)
+> 
+> * chrony: disable reverse dns lookups in healthcheck [Ken Bannister]
+> 
+
+</details>
+
+# v2.107.26+rev5
+## (2022-12-23)
+
+
+<details>
+<summary> Update balena-yocto-scripts to 0f1d0265bbabdb2b869f6cf9363d418b52681ffc [renovate[bot]] </summary>
+
+> ## balena-yocto-scripts-1.19.17
+> ### (2022-12-23)
+> 
+> * jenkins_generate_ami: support using both live and installer images as AMIs [Alex Gonzalez]
+> * balena-generate-ami: Enable nitroTPM support [Alex Gonzalez]
+> * jenkins_build: add argument to build OS development images [Alex Gonzalez]
+> 
+
+</details>
+
+# v2.107.26+rev4
+## (2022-12-22)
+
+
+<details>
+<summary> Update contracts to 4698e4ef55fdc61aa3df8d8494f2cbbd306b26c9 [renovate[bot]] </summary>
+
+> ## contracts-2.0.36
+> ### (2022-12-22)
+> 
+> * Fix owa5x slug [Trong Nghia Nguyen]
+> 
+
+</details>
+
+# v2.107.26+rev3
+## (2022-12-20)
+
+
+<details>
+<summary> Update contracts to b65d5bd372587d4aaabba526d34f67c3f63ea90b [renovate[bot]] </summary>
+
+> ## contracts-2.0.35
+> ### (2022-12-20)
+> 
+> * hw.device-type: Add Owasys owa5X device [Alvaro Guzman]
+> 
+
+</details>
+
+# v2.107.26+rev2
+## (2022-12-16)
+
+
+<details>
+<summary> Update contracts to b6bdc537c9f9d224301152a0291682172320bf6a [renovate[bot]] </summary>
+
+> ## contracts-2.0.34
+> ### (2022-12-16)
+> 
+> * Flowzone: Allow external contributions [Florin Sarbu]
+> 
+> ## contracts-2.0.33
+> ### (2022-12-16)
+> 
+> * Flowzone: Use inherited secrets [Florin Sarbu]
+> 
+
+</details>
+
+* Update balena-yocto-scripts to 67cb61f9209482ddd22b3f98ebf6cb3609f0acb7 [renovate[bot]]
+
+# v2.107.26+rev1
+## (2022-12-15)
+
+
+<details>
+<summary> Update contracts to 08f029b5c82e71b9b25fbeef4805815bfa4c24aa [renovate[bot]] </summary>
+
+> ## contracts-2.0.32
+> ### (2022-12-15)
+> 
+> * Add node v19.3.0 v16.19.0 and v14.21.2 [Trong Nghia Nguyen]
+> 
+
+</details>
+
+# v2.107.26
+## (2022-12-12)
+
+
+<details>
+<summary> Update layers/meta-balena to d5e33e207a60caaf8fe6b83326cad8b6e94a47e5 [renovate[bot]] </summary>
+
+> ## meta-balena-2.107.26
+> ### (2022-12-12)
+> 
+> * connectivity: Add linux firmware for iwlwifi 9260 [Alex Gonzalez]
+> 
+
+</details>
+
+# v2.107.25
+## (2022-12-11)
+
+
+<details>
+<summary> Update layers/meta-balena to 1b077510cb474b222865c24677995d59687af06a [renovate[bot]] </summary>
+
+> ## meta-balena-2.107.25
+> ### (2022-12-11)
+> 
+> * image_types_balena: fix inconsistency with flasher image partition naming [Alex Gonzalez]
+> 
+
+</details>
+
+# v2.107.24+rev1
+## (2022-12-10)
+
+
+<details>
+<summary> Update contracts to 0357433005e9ea7ace7876530d910eeb8386c980 [renovate[bot]] </summary>
+
+> ## contracts-2.0.31
+> ### (2022-12-10)
+> 
+> * Add partials for dotnet v7 [Trong Nghia Nguyen]
+> 
+
+</details>
+
+# v2.107.24
+## (2022-12-10)
+
+
+<details>
+<summary> Update layers/meta-balena to 5cb3c1438d6959dc31e77851fb070143ef1a82a6 [renovate[bot]] </summary>
+
+> ## meta-balena-2.107.24
+> ### (2022-12-09)
+> 
+> * Update balena-os/balena-supervisor to v14.4.6 [renovate[bot]]
+> 
+
+</details>
+
+# v2.107.23+rev1
+## (2022-12-09)
+
+
+<details>
+<summary> Update contracts to 7038b0ce71daa96a832540d24fcad5bc5142ff13 [renovate[bot]] </summary>
+
+> ## contracts-2.0.30
+> ### (2022-12-09)
+> 
+> * Add support for Alpine Linux v3.17 [Trong Nghia Nguyen]
+> * Add dotnet v7, update v6.x and v3.x to latest versions [Trong Nghia Nguyen]
+> * Add Python v3.11.1 v3.10.9 v3.9.16 v3.8.16 and v3.7.16 [Trong Nghia Nguyen]
+> * Add Golang v1.19.4 and v1.18.9 [Trong Nghia Nguyen]
+> 
+
+</details>
+
+# v2.107.23
+## (2022-12-09)
+
+
+<details>
+<summary> Update layers/meta-balena to 581e322552bf300bc136f2bc553558d020cc313c [renovate[bot]] </summary>
+
+> ## meta-balena-2.107.23
+> ### (2022-12-09)
+> 
+> * patch: Add product documentation [Vipul Gupta (@vipulgupta2048)]
+> 
+
+</details>
+
+# v2.107.22
+## (2022-12-09)
+
+
+<details>
+<summary> Update layers/meta-balena to 0b95d62f50f71a7aea94e383812cb8fcd0927b0b [renovate[bot]] </summary>
+
+> ## meta-balena-2.107.22
+> ### (2022-12-09)
+> 
+> * tests: os: fsck: make compatible with old yocto releaes [rcooke-warwick]
+> 
+
+</details>
+
+# v2.107.21
+## (2022-12-08)
+
+
+<details>
+<summary> Update layers/meta-balena to be29271a011eec9121d17db5be03824ff78163cd [renovate[bot]] </summary>
+
+> ## meta-balena-2.107.21
+> ### (2022-12-08)
+> 
+> * tests/connectivity: Run the proxy tests with the actual redsocks uid of the DUT [Florin Sarbu]
+> 
+
+</details>
+
+# v2.107.20
+## (2022-12-08)
+
+
+<details>
+<summary> Update layers/meta-balena to 867c3a93cf533c63fc57703d08f3b3d2af554746 [renovate[bot]] </summary>
+
+> ## meta-balena-2.107.20
+> ### (2022-12-07)
+> 
+> * kernel-balena: enable zstd compression [Joseph Kogut]
+> 
+> ## meta-balena-2.107.19
+> ### (2022-12-06)
+> 
+> * image_types_balena: generate bmap file [Joseph Kogut]
+> * flasher: write disk image skipping sparse blocks [Joseph Kogut]
+> * image_types_balena: create sparse disk image [Joseph Kogut]
+> 
+
+</details>
+
 # v2.107.18
 ## (2022-12-04)
 
