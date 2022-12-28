@@ -29,6 +29,7 @@ SRC_URI = " \
 "
 
 DTBNAME = "tegra234-p3701-0000-p3737-0000"
+DTBNAME = "tegra234-p3701-0000-p3737-0000-kiwi"
 KERNEL_DEVICETREE = "${DEPLOY_DIR_IMAGE}/${DTBNAME}.dtb"
 DTBFILE ?= "${@os.path.basename(d.getVar('KERNEL_DEVICETREE', True).split()[0])}"
 FLASHTOOLS_DIR = "tegra-flash"
@@ -117,7 +118,7 @@ signfile() {
         > $destdir/flash.xml
 
 	./tegraflash.py  --bl uefi_jetson_with_dtb.bin \
-			 --odmdata gbe-uphy-config-22,hsstp-lane-map-3,nvhs-uphy-config-0,hsio-uphy-config-0,gbe0-enable-10g  --overlay_dtb L4TConfiguration.dtbo,tegra234-p3737-overlay-pcie.dtbo,tegra234-p3737-audio-codec-rt5658-40pin.dtbo,tegra234-p3737-a03-overlay.dtbo,tegra234-p3737-a04-overlay.dtbo,L4TRootfsInfo.dtbo,tegra234-p3737-camera-dual-imx274-overlay.dtbo,tegra234-p3737-camera-e3331-overlay.dtbo,tegra234-p3737-camera-e3333-overlay.dtbo,tegra234-p3737-camera-imx185-overlay.dtbo,tegra234-p3737-camera-imx390-overlay.dtbo  \
+			 --odmdata gbe-uphy-config-0,hsstp-lane-map-3,nvhs-uphy-config-0,hsio-uphy-config-16  --overlay_dtb L4TConfiguration.dtbo,tegra234-p3737-overlay-pcie.dtbo,tegra234-p3737-audio-codec-rt5658-40pin.dtbo,tegra234-p3737-a03-overlay.dtbo,tegra234-p3737-a04-overlay.dtbo,L4TRootfsInfo.dtbo,tegra234-p3737-camera-dual-imx274-overlay.dtbo,tegra234-p3737-camera-e3331-overlay.dtbo,tegra234-p3737-camera-e3333-overlay.dtbo,tegra234-p3737-camera-imx185-overlay.dtbo,tegra234-p3737-camera-imx390-overlay.dtbo  \
 					--bldtb ${DTBFILE} \
 					--applet mb1_t234_prod.bin \
 					--cmd "sign"  \
@@ -160,7 +161,7 @@ do_configure() {
         DATAARGS="--datafile ${DATAFILE}"
     fi
     cp -L "${DEPLOY_DIR_IMAGE}/${DTBFILE}" ./${DTBFILE}
-    cp "${DEPLOY_DIR_IMAGE}/uefi_jetson.bin" ./uefi_jetson.bin
+    cp "${DEPLOY_DIR_IMAGE}/uefi_jetson_kiwi.bin" ./uefi_jetson.bin
     cp "${DEPLOY_DIR_IMAGE}/tos-${MACHINE}.img" ./${TOSIMGFILENAME}
     for f in ${BOOTFILES}; do
         cp "${STAGING_DATADIR}/tegraflash/$f" .
@@ -236,6 +237,9 @@ do_configure() {
     DEPLOY_DIR_IMAGE=${DEPLOY_DIR_IMAGE} /bin/bash ./create_blob.sh
 
     cp boot0.img ${DEPLOY_DIR_IMAGE}/bootfiles/
+
+    # Create a new bct file with the correct eeprom size
+    # sed 's/; cvb_eeprom_read_size = <0x100>/cvb_eeprom_read_size = <0x0>/g' -i tegra234-mb2-bct-common.dtsi
 }
 
 
