@@ -11,20 +11,44 @@ set -o errexit
 DURING_UPDATE=${DURING_UPDATE:-0}
 declare -a UPDATED_PARTITIONS=()
 bootloader_device="/dev/mtdblock0"
-bootloader_blob="/opt/tegra-binaries/boot0.img"
+bootloader_blob="/opt/tegra-binaries/boot0.img.gz"
 
 info_log()
 {
     echo "[INFO] $@"
 }
 
+check_disable_xudc()
+{
+    extlinuxfile="/mnt/sysroot/active/current/boot/extlinux/extlinux.conf"
+
+    if [ -e $extlinuxfile ]; then
+       if grep -q "l4tver=35.1.0" "${extlinuxfile}"; then
+            info_log "Old root is running L4T 35.1.0, will disable tegra-xudc from the device-trees"
+            for dtbfile in `find /mnt/sysroot/active/ -name "*.dtb" -type f`; do
+                info_log "Disabling tegra-xudc in $dtbfile ...";
+                fdtput -t s $dtbfile /xudc status disabled
+                fdtput -t s $dtbfile / nvidia,dtsfilename "tegra234-p3701-0000-p3737-0000_xudc_disabled.dts"
+                current_xudc_status=$(fdtget $dtbfile /xudc status)
+                info_log "$dtbfile now has xudc $current_xudc_status"
+            done
+        else
+            info_log "extlinux file not found in old rootfs"
+        fi;
+    fi;
+}
+
+check_disable_xudc
+
 existing_bootloader_md5sum=$(dd if=$bootloader_device bs=1M status=none | md5sum | awk '{print $1}')
 update_bootloader_md5sum=$(md5sum $bootloader_blob | awk '{print $1}')
 
 if [ ! "$existing_bootloader_md5sum" = "$update_bootloader_md5sum" ]; then
-    info_log "Will update bootloader device"
+    info_log "Will clear bootloader device before the update"
     flash_erase /dev/mtd0 0 0 || true
-    dd if=$bootloader_blob of=$bootloader_device bs=1M
+    info_log "Updating bootloader device"
+    zcat $bootloader_blob > $bootloader_device
+    info_log "Updated bootloader device"
 else
     info_log "No need to update bootloader device"
 fi
