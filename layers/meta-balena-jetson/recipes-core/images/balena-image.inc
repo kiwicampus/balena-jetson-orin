@@ -1,13 +1,18 @@
 IMAGE_FSTYPES += "balenaos-img"
 
-do_rootfs:balenaos-img[depends] += " linux-tegra:do_deploy edk2-firmware-tegra:do_deploy l4t-launcher-extlinux:do_deploy tegra-flash-dry:do_install "
+do_rootfs:balenaos-img[depends] += " tegra-flash-dry:do_install nvidia-kernel-oot:do_deploy edk2-container:do_deploy "
 DTBFILE ?= "${@os.path.basename(d.getVar('KERNEL_DEVICETREE', True).split()[0])}"
 
 IMAGE_INSTALL:append = " \
     tegra-flash-dry \
-"
-
-IMAGE_INSTALL:append:jetson-agx-orin-devkit = " \
+    kernel-image-initramfs \
+    tegra-redundant-boot \
+    tegra-nv-boot-control-config \
+    tegra-eeprom-tool \
+    setup-nv-boot-control \
+    edk2-container \
+    tegra-nvfancontrol \
+    tegra-nvpower \
     parted \
     gptfdisk \
     tegra-nvpmodel \
@@ -17,70 +22,23 @@ IMAGE_INSTALL:append:jetson-agx-orin-devkit = " \
     tegra-bluetooth \
     tegra-wifi \
     tegra-firmware-rtl8822 \
-    l4t-launcher-extlinux \
+    linux-firmware-rtl8168 \
+    linux-firmware-ibt-12-16 \
+    linux-firmware-iwlwifi-8265 \
     jetson-dtbs \
-    nvidia-display-driver \
-    tegra-nvfancontrol \
+    l4t-launcher-extlinux \
     dtc \
+    pciutils \
+    nvidia-kernel-oot-devicetrees nvidia-kernel-oot-display nvidia-kernel-oot-cameras nvidia-kernel-oot-bluetooth nvidia-kernel-oot-wifi \
+    nvidia-kernel-oot-canbus nvidia-kernel-oot-virtualization nvidia-kernel-oot-base nvidia-drm-loadconf \
 "
 
-IMAGE_INSTALL:append:jetson-orin-nx-xavier-nx-devkit = " \
-    parted \
-    gptfdisk \
-    tegra-nvpmodel \
-    tegra-configs-nvstartup \
-    tegra-configs-udev \
-    mtd-utils \
-    tegra-bluetooth \
-    tegra-wifi \
-    tegra-firmware-rtl8822 \
-    l4t-launcher-extlinux \
-    jetson-dtbs \
-    nvidia-display-driver \
-    tegra-nvfancontrol \
-"
+# We don't mount or use the esp partition, so let's
+# remove the systemd mounts that delay booting
+IMAGE_INSTALL:remove = "setup-nv-boot-control-service"
 
-IMAGE_INSTALL:append:jetson-xavier = " \
-    parted \
-    gptfdisk \
-    tegra-bluetooth \
-    tegra-wifi \
-    tegra-nvpmodel \
-    tegra-configs-nvstartup \
-    tegra-configs-udev \
-    tegra-nvfancontrol \
-    l4t-launcher-extlinux \
-"
-
-IMAGE_INSTALL:append:jetson-xavier-nx-devkit-emmc = " \
-    parted \
-    gptfdisk \
-    tegra-nvpmodel \
-    tegra-configs-nvstartup \
-    tegra-configs-udev \
-    tegra-wifi \
-    tegra-bluetooth \
-    tegra-firmware-rtl8822 \
-    mtd-utils \
-    tegra-nvfancontrol \
-    l4t-launcher-extlinux \
-    jetson-dtbs \
-"
-
-IMAGE_INSTALL:append:jetson-xavier-nx-devkit = " \
-    parted \
-    gptfdisk \
-    tegra-nvpmodel \
-    tegra-configs-nvstartup \
-    tegra-configs-udev \
-    mtd-utils \
-    tegra-bluetooth \
-    tegra-wifi \
-    tegra-firmware-rtl8822 \
-    tegra-nvfancontrol \
-    l4t-launcher-extlinux \
-"
+MACHINE_EXTRA_RRECOMMENDS += " kernel-image-initramfs"
+MACHINE_EXTRA_RDEPENDS += " kernel-image-initramfs"
 
 IMAGE_INSTALL:remove = "kernel-image-image"
-IMAGE_INSTALL:remove = "kernel-image-initramfs"
 

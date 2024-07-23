@@ -1,5 +1,21 @@
 #  balena-jetson-orin repository
 
+## Linux for Tegra (L4T) Support
+
+All Jetson Orin boards in this repository are using L4T 36.3 - Jetpack 6.
+
+The last L4T 35.5.0 - Jetpack 5-based releases are:
+* v5.3.21+rev3
+* v5.3.21+rev2
+* v5.3.21+rev1
+* v5.3.21
+
+Given there is a major BSP upgrade from Jetpack 5 to Jetpack 6, prior to updating your devices to an L4T 36.3-based OS release, we recommend you to:
+* Always test any OS update using lab devices first, to ensure the upgrade path is suitable for your devices and that your container applications are in sync with the host OS
+* If your device has been originally provisioned on an L4T version older than 35.5.0, first update to the last two L4T 35.5.0-based releases. This implies updating first to v5.3.21+rev2, then to v5.3.1+rev3, as this ensures both bootchains are updated to L4T 35.5.0, as required by the Jetpack 6 BSP.
+* Avoid interrupting the update process by rebooting or by cutting power to the device
+
+
 ## Clone/Initialize the repository
 
 There are two ways of initializing this repository:
@@ -11,18 +27,51 @@ or
 
 ## Build information
 
-### Build flags
+balenaOS currently only builds with cgroups v1. If your distribution defaults
+to using cgroups v2, please boot with the following kernel command line
+argument:
+`systemd.unified_cgroup_hierarchy=0`
 
-* Consult layers/meta-balena/README.md for info on various build flags.
-(setting up serial console support for example). Build flags can be set by using the build script (barys).
-See below for using the build script.
+### Containerized build
 
-### Build this repository
+* If you have a working docker installation, you can build in a containerized
+  environment as follows:
+  `./balena-yocto-scripts/build/balena-build.sh -d <device type> -s <shared directory>`
 
-* Run the build script:
-  ./balena-yocto-scripts/build/barys
+  Where:
+    * Device type is one of the supported devices with a valid `<device type name>.coffee` description file.
+    * Shared directory is the absolute path to the build folder
+
+### Native build
+
+To build all supported device types natively, please make sure your Linux
+distribution is [supported](https://docs.yoctoproject.org/singleindex.html#supported-linux-distributions) by Yocto Project.
+
+Additional host tools need to be installed for native builds to work.
+
+* Run the barys build script:
+  `./balena-yocto-scripts/build/barys`
 
 * You can also run barys with the -h switch to inspect the available options
+
+### Custom build using this repository
+
+* Run the barys build script in dry run mode to setup an empty `build` directory
+    `./balena-yocto-scripts/build/barys --remove-build --dry-run`
+
+* Edit the `local.conf` in the `build/conf` directory
+
+* Prepare build's shell environment
+    `source layers/poky/oe-init-build-env`
+
+* Run bitbake (see message outputted when you sourced above for examples)
+
+### Build flags
+
+* Consult layers/meta-balena/README.md for info on various build flags (setting
+up serial console support for example) and build prerequisites. Build flags can
+be set by using the build scripts (barys or balena-build) or by manually
+modifying `local.conf`.
 
 ## Contributing
 
